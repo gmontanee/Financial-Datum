@@ -4,6 +4,7 @@ function main () {
   var ENTRY_POINT = '/';
   var layoutInstance = null;
   var navbarInstance = null;
+  var footerInstance = null;
   var rootElement = document.querySelector('#root');
   var links = [
     {name: 'Home', 
@@ -15,6 +16,7 @@ function main () {
     
     generateLayout();
     generateNavBar();
+    generateFooter();
     addListenerToNavbar();
     activateRouter();
 
@@ -31,12 +33,22 @@ function main () {
     function addListenerToNavbar() {
       var anchors = document.querySelectorAll('nav a');
       anchors.forEach(function(anchore) {
-        anchore.addEventListener('clik', changePage);
+        anchore.addEventListener('click', changePage);
       });
+    }
+
+    function generateFooter() {
+      footerInstance = new Footer(layoutInstance.footer, links);
+      footerInstance.generate();
     }
 
     function activateRouter() {
       routerInstance.buildDom(ENTRY_POINT, layoutInstance.main);
+    }
+
+    function changePage(event) {
+      var url = event.target.attributes.url.value;
+      routerInstance.buildDom(url, layoutInstance.main);
     }
 }
 window.addEventListener('load', main);

@@ -9,12 +9,12 @@ Router.prototype.buildDom = function(url, parentElement) {
     case '/':
       this.generateLandingPage(parentElement);
       break;
-    // case '/Forex':
-    //   this.generateForexPage(parentElement);
-    //   break;
-    // case '/Crypto':
-    //   this.generateCryptoPage(parentElement);
-    //   break;
+    case '/Forex':
+      this.generateForexPage(parentElement);
+      break;
+    case '/Crypto':
+      this.generateCryptoPage(parentElement);
+      break;
     default:
         this.generateLandingPage(parentElement);
   } 
@@ -25,7 +25,14 @@ Router.prototype.generateLandingPage = function(parentElement) {
   this.page.generate();
 }
 
-// Router.prototype. = function() {}
-// Router.prototype. = function() {}
+Router.prototype.generateForexPage = function(parentElement) {
+  this.page = new ForexPage(parentElement);
+  this.page.generate();
+}
+
+Router.prototype.generateCryptoPage = function(parentElement) {
+  this.page = new CryptoPage(parentElement);
+  this.page.generate();
+}
 
 var routerInstance = new Router();
