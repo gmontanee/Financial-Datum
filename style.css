@@ -11,6 +11,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: rgba(200, 255, 255, 0.5);
 }
 
 
@@ -23,9 +24,13 @@ body {
   line-height: 147%;
 }
 
-h1 {}
+h1 {
+  text-align: center;
+}
 
-h2 {}
+h2 {
+  text-align: center;
+}
 
 h3 {}
 
@@ -38,9 +43,25 @@ p {
 /* ---- layout ---- */
 
 #site-header {
-  padding: 30px 0;
+  padding: 10px 0;
   color: white;
-  background: #111;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  align-content: center;
+}
+
+#site-header li{
+  padding: 10px 20px 10px 20px;
+}
+
+/* header {
+  background-image: url('');
+} */
+
+a {
+  font-size: 20px;
+  color: #111;
+  text-decoration: none;
 }
 
 #site-footer {
@@ -55,6 +76,7 @@ p {
 
 .container {
   margin: 0 20px;
+  align-content: center;
 }
 
 .section {

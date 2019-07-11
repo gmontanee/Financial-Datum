@@ -10,9 +10,9 @@ function main () {
     {name: 'Home', 
       url:'/'},
     {name: 'Forex',
-      url: '/Forex'},
-    {name: 'Cryptocurrency', 
-      url: '/Crypto'}];
+      url: '/Forex'}];
+    // {name: 'Cryptocurrency', 
+    //   url: '/Crypto'}];
     
     generateLayout();
     generateNavBar();
