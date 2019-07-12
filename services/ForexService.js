@@ -6,7 +6,11 @@ function ForexService() {
 
 ForexService.prototype.getAPI = async function() {
   var response = await fetch(`${this.baseUrl}`);
-  return await response.json(); 
+  var data = await response.json(); 
+  data.forexList.forEach(function (elem) {
+    elem.changes = Math.round(elem.changes*1000)/1000;
+  });
+  return data;
 }
 
 var forexServiceInstance = new ForexService();

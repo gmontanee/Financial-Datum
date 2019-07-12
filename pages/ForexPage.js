@@ -14,9 +14,9 @@ ForexPage.prototype.generate = async function() {
   this.loading.generate();
   await this.connectToAPI();
   this.elements = `
-    <button id="Ordered">Ordered</button>
-    <button id="Compare">Compare</button>
-    <button id="Exchanges">All exchanges of currency</button>
+    <button class="screenButton" id="Ordered">Ordered</button>
+    <button class="screenButton" id="Compare">Compare</button>
+    <button class="screenButton" id="Exchanges">All exchanges of currency</button>
     `
   this.render();
 
@@ -41,19 +41,17 @@ ForexPage.prototype.generate = async function() {
         <option class="option" value="gainer">Gainers</option>
         <option class="option" value="loser">Losers</option>
       </select>`;
-    self.render();
     self.aux = self.elements;
+    self.elements = `Please select one option, there are two options which will order the gainers exchanges depending on their value` + self.elements;
+    self.render();
 
     var selector = document.querySelector('#orderlist');
     selector.addEventListener('change', orderby)
 
     function orderby (elem) {
-      console.log(elem.target.chi)
-
       self.elements = self.aux;
       
       if (elem === 'gainer' || elem.target.value === 'gainer') {
-        self.selected = 1;
         var arr = self.data.forexList.filter(function(a){
           return a.changes > 0;
         });
@@ -61,28 +59,56 @@ ForexPage.prototype.generate = async function() {
         var arr = arr.sort(function(a, b){
           return b.changes - a.changes;
         });
+        self.elements += `<h2>GAINERS</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Pair</th>
+                <th>Price</th>
+                <th>Change</th>
+                <th>Change(%)</th>
+              </tr>
+            </thead>
+            <tbody>`;
         arr.forEach(function(elem){
           self.elements += `
-          <h3>${elem.ticker}</h3>
-          <p><h4>Changes:</h4> ${elem.changes}</p>`;
+          <tr>
+            <td>${elem.ticker}</td>
+            <td>${elem.ask}</td>
+            <td>${Math.round((elem.ask-elem.open)*10000)/10000}</td>
+            <td>+ ${elem.changes}%</td>
+          </tr>`;
         });
       }
       else if (elem === 'loser' || elem.target.value === 'loser') {
-        self.selected = 2;
         var arr = self.data.forexList.filter(function(a){
           return a.changes <= 0;
         });
         var arr = arr.sort(function(a, b){
           return a.changes - b.changes;
         });
+        self.elements += `<h2>LOSERS</h2>
+          <table>
+          <thead>
+            <tr>
+              <th>Pair</th>
+              <th>Price</th>
+              <th>Change</th>
+              <th>Change(%)</th>
+            </tr>
+          </thead>
+          <tbody>`;
         arr.forEach(function(elem){
           self.elements += `
-            <h3>${elem.ticker}</h3>
-            <p><h4>Changes:</h4> ${elem.changes}</p>`;
-        });
-      } else {
-        self.selected = 0;
+            <tr>
+            <td>${elem.ticker}</td>
+            <td>${elem.ask}</td>
+            <td>${Math.round((elem.ask-elem.open)*10000)/10000}</td>
+            <td>${elem.changes}%</td>
+            </tr>`;
+          });
       }
+      self.elements += `</table>`;
       self.render();
       var selector = document.querySelector('select');
       selector.addEventListener('change', orderby);
@@ -96,17 +122,19 @@ ForexPage.prototype.generate = async function() {
 
     self.data.forexList.forEach((currency) => {
       self.info = `
-        <h3>${currency.ticker}</h3>
+        <div class='orderedDiv'>
+          <h3>${currency.ticker}</h3>
           <p><h4>Changes:</h4> ${currency.changes}</p>
           <p><h4>Bid:</h4> ${currency.bid}</p>
           <p><h4>Ask:</h4> ${currency.ask}</p>
           <p><h4>High:</h4> ${currency.high}</p>
           <p><h4>Low:</h4> ${currency.low}</p>
           <p><h4>Open:</h4> ${currency.open}</p>
-          <p><h4>Date:</h4> ${currency.date}</p>`;
+          <p><h4>Date:</h4> ${currency.date}</p>
+        </div>`;
       self.elements += `
           <option value="${self.info}">${currency.ticker}</option>`;
-    });
+        });
     self.elements += `
       </select>`;
 
@@ -117,7 +145,6 @@ ForexPage.prototype.generate = async function() {
     selector.addEventListener('change', printValue)
 
     function printValue(e) {
-      console.log(e.target.value);
       self.elements = self.aux;
       self.elements += `${e.target.value}`;
       self.render();
@@ -140,14 +167,16 @@ ForexPage.prototype.generate = async function() {
         self.elements = self.aux;
         arrayCurrency.forEach(function(currency) {
           self.elements += `
-          <h3>${currency.ticker}</h3>
-          <p><h4>Changes:</h4> ${currency.changes}</p>
-          <p><h4>Bid:</h4> ${currency.bid}</p>
-          <p><h4>Ask:</h4> ${currency.ask}</p>
-          <p><h4>High:</h4> ${currency.high}</p>
-          <p><h4>Low:</h4> ${currency.low}</p>
-          <p><h4>Open:</h4> ${currency.open}</p>
-          <p><h4>Date:</h4> ${currency.date}</p>`;
+          <div class='orderedDiv'>
+            <h3>${currency.ticker}</h3>
+            <p><h4>Changes:</h4> ${currency.changes}</p>
+            <p><h4>Bid:</h4> ${currency.bid}</p>
+            <p><h4>Ask:</h4> ${currency.ask}</p>
+            <p><h4>High:</h4> ${currency.high}</p>
+            <p><h4>Low:</h4> ${currency.low}</p>
+            <p><h4>Open:</h4> ${currency.open}</p>
+            <p><h4>Date:</h4> ${currency.date}</p>
+          </div>`;
         });
         self.render();;
       }
@@ -159,7 +188,6 @@ ForexPage.prototype.generate = async function() {
     searchButton.addEventListener('click', function(){searchfunc(currencyInput)});
     
     function findexchanges(currency) {
-      console.log(self.data);
       if(!currency) return; 
       var currencyUpper = currency.toUpperCase();
       var listOfCurrencis = self.data.forexList.filter(function(element){
