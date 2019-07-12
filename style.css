@@ -3,6 +3,7 @@
 
 html {
   box-sizing: border-box;
+  position: relative;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -11,7 +12,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: rgba(200, 255, 255, 0.5);
+  background-color: white;
 }
 
 
@@ -43,15 +44,21 @@ p {
 /* ---- layout ---- */
 
 #site-header {
-  padding: 10px 0;
+  padding: 0;
   color: white;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(180 , 180, 180, 0.9);
   text-align: center;
+  height: 70px;
+}
+
+#site-header ul{
   align-content: center;
+  position: relative;
+  padding: 0 0 0 0;
 }
 
 #site-header li{
-  padding: 10px 20px 10px 20px;
+  padding: 5px 0 5px 0;
 }
 
 /* header {
@@ -65,13 +72,16 @@ a {
 }
 
 #site-footer {
-  color: white;
-  padding: 60px 0;
-  background: #111;
+  color: black;
+  padding: 10px 0;
+  background: rgba(181, 180, 180, 0.9);
+  position: relative;
 }
 
 #site-main {
-  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .container {
@@ -96,11 +106,15 @@ a {
 
 /* ---- components ---- */
 
-.button {
-  width: 100%;
+button {
+  width: 80%;
+  height: 200px;
   background-color: blue;
   color: #fff;
-  border: 1px solid #fff
+  border: 1px solid #fff;
+  margin: 15px auto;
+  font-size: 25px;
+  padding: 0 30px 0 30px;
 }
 
 .button-alt {
