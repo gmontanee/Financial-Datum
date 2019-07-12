@@ -4,6 +4,7 @@
 html {
   box-sizing: border-box;
   position: relative;
+  height: 100%;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -12,7 +13,9 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: white;
+  height: 100%;
+  background: #000 url('http://www.sclance.com/wallpapers/forex-wallpaper/forex-wallpaper_733881.jpg') center;
+  background-size: cover;
 }
 
 
@@ -43,18 +46,24 @@ p {
 
 /* ---- layout ---- */
 
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 #site-header {
   padding: 0;
   color: white;
-  background-color: rgba(180 , 180, 180, 0.9);
   text-align: center;
-  height: 70px;
 }
 
 #site-header ul{
   align-content: center;
   position: relative;
-  padding: 0 0 0 0;
+  padding: 10px 0;
+  margin: 0px;
+  background-color: rgba(180 , 180, 180, 0.9);
 }
 
 #site-header li{
@@ -81,10 +90,17 @@ a {
 #site-main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-bottom: 30px;
-}
+  align-items: center;
+  padding: 0 25px;
 
+  color: white;
+}
+#site-main header{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .container {
   margin: 0 20px;
   align-content: center;
@@ -110,8 +126,8 @@ a {
 .screenButton {
   width: 80%;
   height: 200px;
-  background-color: blue;
-  color: #fff;
+  background-color: rgba(133, 133, 133, 0.214);
+  color: rgba(28, 28, 28, 0.824);
   border: 1px solid #fff;
   margin: 15px auto;
   font-size: 25px;
@@ -120,7 +136,7 @@ a {
 .search {
   width:70%;
   height: 40px;
-  background-color: blue;
+  background-color: black;
   color: #fff;
   border: 1px solid #fff;
   margin: 15px auto;
@@ -146,11 +162,13 @@ select {
   border: 2px solid #6bb99c;
   width: 80%;
   border-radius: 4px;
+  font-size: 16px;
 }
 
 .orderedDiv {
   margin: 10px 30px auto;
   border: 3px solid black;
+  width: 100%;
   border-radius: 20px;
   text-align: center;
   padding-bottom: 10px;
@@ -180,4 +198,37 @@ td {
   line-height: 1.6;
   vertical-align: top;
   border-top: 1px solid #ddd;
+}
+.data article{
+  border-top: 1px solid black;
+}
+.data article p{
+  margin-bottom:1.33em;
+}
+.two-rows{
+  display: flex;
+}
+.two-rows div{
+  width: 50%;
+}
+.data article h4{
+  margin-bottom:0;
+}
+.animation-title {
+  opacity: 0;
+  animation: 0.5s title-animate .8s ease-in-out forwards;
+}
+.animation-text {
+  opacity: 0;
+  animation: 0.5s title-animate 1.5s ease-in-out forwards;
+}
+@keyframes title-animate {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

@@ -76,7 +76,7 @@ ForexPage.prototype.generate = async function() {
             <td>${elem.ticker}</td>
             <td>${elem.ask}</td>
             <td>${Math.round((elem.ask-elem.open)*10000)/10000}</td>
-            <td>+ ${elem.changes}%</td>
+            <td>+${elem.changes}%</td>
           </tr>`;
         });
       }
@@ -124,13 +124,42 @@ ForexPage.prototype.generate = async function() {
       self.info = `
         <div class='orderedDiv'>
           <h3>${currency.ticker}</h3>
-          <p><h4>Changes:</h4> ${currency.changes}</p>
-          <p><h4>Bid:</h4> ${currency.bid}</p>
-          <p><h4>Ask:</h4> ${currency.ask}</p>
-          <p><h4>High:</h4> ${currency.high}</p>
-          <p><h4>Low:</h4> ${currency.low}</p>
-          <p><h4>Open:</h4> ${currency.open}</p>
-          <p><h4>Date:</h4> ${currency.date}</p>
+          <section class='data'>
+            <article class='two-rows'>
+              <div>
+                <h4>Changes:</h4>
+                <p>${currency.changes}</p>
+                </div>
+                <div>
+                <h4>Open:</h4>
+                <p>${currency.open}</p>
+              </div>
+            </article>
+            <article class='two-rows'>
+            <div>
+            <h4>Bid:</h4>
+            <p>${currency.bid}</p>
+            </div>
+            <div>
+            <h4>Ask:</h4>
+            <p>${currency.ask}</p>
+            </div>
+            </article>
+            <article class='two-rows'>
+            <div>
+            <h4>High:</h4>
+            <p>${currency.high}</p>
+            </div>
+            <div>
+            <h4>Low:</h4>
+            <p>${currency.low}</p>
+            </div>
+            </article>
+            <article>
+              <h4>Date:</h4>
+              <p>${currency.date}</p>
+            </article>            
+          </section>
         </div>`;
       self.elements += `
           <option value="${self.info}">${currency.ticker}</option>`;
@@ -168,15 +197,44 @@ ForexPage.prototype.generate = async function() {
         arrayCurrency.forEach(function(currency) {
           self.elements += `
           <div class='orderedDiv'>
-            <h3>${currency.ticker}</h3>
-            <p><h4>Changes:</h4> ${currency.changes}</p>
-            <p><h4>Bid:</h4> ${currency.bid}</p>
-            <p><h4>Ask:</h4> ${currency.ask}</p>
-            <p><h4>High:</h4> ${currency.high}</p>
-            <p><h4>Low:</h4> ${currency.low}</p>
-            <p><h4>Open:</h4> ${currency.open}</p>
-            <p><h4>Date:</h4> ${currency.date}</p>
-          </div>`;
+          <h3>${currency.ticker}</h3>
+          <section class='data'>
+            <article class='two-rows'>
+              <div>
+                <h4>Changes:</h4>
+                <p>${currency.changes}</p>
+                </div>
+                <div>
+                <h4>Open:</h4>
+                <p>${currency.open}</p>
+              </div>
+            </article>
+            <article class='two-rows'>
+            <div>
+            <h4>Bid:</h4>
+            <p>${currency.bid}</p>
+            </div>
+            <div>
+            <h4>Ask:</h4>
+            <p>${currency.ask}</p>
+            </div>
+            </article>
+            <article class='two-rows'>
+            <div>
+            <h4>High:</h4>
+            <p>${currency.high}</p>
+            </div>
+            <div>
+            <h4>Low:</h4>
+            <p>${currency.low}</p>
+            </div>
+            </article>
+            <article>
+              <h4>Date:</h4>
+              <p>${currency.date}</p>
+            </article>            
+          </section>
+        </div>`;
         });
         self.render();;
       }

@@ -16,7 +16,6 @@ function main () {
     
     generateLayout();
     generateNavBar();
-    generateFooter();
     addListenerToNavbar();
     activateRouter();
 
