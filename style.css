@@ -15,6 +15,7 @@ body {
   padding: 0;
   height: 100%;
   background: #000 url('http://www.sclance.com/wallpapers/forex-wallpaper/forex-wallpaper_733881.jpg') center;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -173,7 +174,6 @@ select {
   text-align: center;
   padding-bottom: 10px;
   background-color: rgba(133, 133, 133, 0.55);
-  max-width: 300px;
 }
 
 /* ---- Table ---- */
@@ -231,5 +231,18 @@ td {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@media (min-width: 500px) {
+
+  .orderedDiv {
+    max-width: 400px;
+    display: inline;
+  }
+  .screenButton {
+    width: 25%;
+    margin: 15px 0 auto;
+    display: inline;
   }
 }
