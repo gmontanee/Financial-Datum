@@ -14,9 +14,9 @@ ForexPage.prototype.generate = async function() {
   this.loading.generate();
   await this.connectToAPI();
   this.elements = `
-    <button class="screenButton" id="Ordered">Ordered</button>
-    <button class="screenButton" id="Compare">Compare</button>
-    <button class="screenButton" id="Exchanges">All exchanges of currency</button>
+    <button class="screenButton" id="Ordered">Ordered changes</button>
+    <button class="screenButton" id="Compare">Exchange consultation</button>
+    <button class="screenButton" id="Exchanges">Consultation of all exchanges</button>
     `
   this.render();
 
@@ -42,7 +42,7 @@ ForexPage.prototype.generate = async function() {
         <option class="option" value="loser">Losers</option>
       </select>`;
     self.aux = self.elements;
-    self.elements = `Please select one option, there are two options which will order the gainers exchanges depending on their value` + self.elements;
+    // self.elements = `Please select one option, there are two options which will order the gainers exchanges depending on their value` + self.elements;
     self.render();
 
     var selector = document.querySelector('#orderlist');

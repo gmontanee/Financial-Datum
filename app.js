@@ -16,6 +16,7 @@ function main () {
     
     generateLayout();
     generateNavBar();
+    // generateFooter();
     addListenerToNavbar();
     activateRouter();
 
@@ -36,10 +37,10 @@ function main () {
       });
     }
 
-    function generateFooter() {
-      footerInstance = new Footer(layoutInstance.footer, links);
-      footerInstance.generate();
-    }
+    // function generateFooter() {
+    //   footerInstance = new Footer(layoutInstance.footer, links);
+    //   footerInstance.generate();
+    // }
 
     function activateRouter() {
       routerInstance.buildDom(ENTRY_POINT, layoutInstance.main);
